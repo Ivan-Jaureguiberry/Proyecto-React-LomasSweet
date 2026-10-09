@@ -1,0 +1,64 @@
+[
+    {
+        "id": 1,
+        "title": "Alfajor Brigadeiro",
+        "price": 4000,
+        "stock": 50,
+        "image": "images/brigadeiro.png",
+        "description": "Combinación de coco y leche condensada que aparece en el centro del relleno. Allí, un aro de dulce de leche aporta cremosidad. Tapas son semichocolatosas, mientras que por encima un baño de chocolate blanco recubre toda la pieza."
+    },
+
+    {
+        "id": 2,
+        "title": "Alfajor Menta Granizada",
+        "price": 4000,
+        "stock": 50,
+        "image": "images/mentaGranizada.png",
+        "description": "Relleno fresco de menta con trocitos de chocolate, entre tapas suaves y bañado en chocolate."
+    },
+
+    {
+        "id": 3,
+        "title": "Alfajor Volcán de Chocolate",
+        "price": 4000,
+        "stock": 50,
+        "image": "images/volcanDeChocolate.png",
+        "description": "Galletas chocolatosas, relleno de ganache de chocolate con corazón de chocolate y cobertura de chocolate negro."
+    },
+
+    {
+        "id": 4,
+        "title": "Alfajor Dulce de Leche Al Ron",
+        "price": 4000,
+        "stock": 50,
+        "image": "images/dulceDeLecheAlRon.png",
+        "description": "Dos tapas chocolatosas, acompañadas por un generoso relleno de dulce de leche que incorpora ron, sumado a un baño de chocolate semiamargo."
+    },
+
+    {
+        "id": 5,
+        "title": "Alfajor Mantecol",
+        "price": 4000,
+        "stock": 50,
+        "image": "images/mantecol.png",
+        "description": "Mantecol distribuido en el relleno en forma de tropezones, conjugándose con una generosa cantidad de dulce de leche. Tapas chocolatosas y un baño de chocolate semiamargo."
+    },
+
+    {
+        "id": 6,
+        "title": "Alfajor Tiramisú",
+        "price": 4000,
+        "stock": 50,
+        "image": "images/tiramisu.png",
+        "description": "Tapas de cacao, ganache de tiramisu centro de pionono con café al coñac y cobertura de chocolate semi amargo."
+    },
+
+    {
+        "id": 7,
+        "title": "Alfajor Triple Dulce de Leche",
+        "price": 4000,
+        "stock": 50,
+        "image": "images/tripleDulceDeLeche.png",
+        "description": "Suaves tapas de chocolate cítricas con dulce de leche y bañado en chocolate semiamargo."
+    }
+]
