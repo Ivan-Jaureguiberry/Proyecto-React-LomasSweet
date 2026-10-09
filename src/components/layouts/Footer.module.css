@@ -1,0 +1,250 @@
+.footer {
+    margin-top: auto;
+    border-top: 1px solid var(--clr-border);
+    background-color: var(--clr-surface);
+    padding: 4rem 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+}
+
+.footer > * {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ── Equipo ── */
+.sectionTitle {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.teamGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+}
+
+.personCard {
+    background-color: var(--clr-bg);
+    border: 1px solid var(--clr-border);
+    border-radius: 12px;
+    padding: 1.75rem 1.25rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-smooth);
+}
+
+.personCard:hover {
+    border-color: var(--clr-border-hover);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+}
+
+.avatar {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    background-color: var(--clr-text);
+    color: var(--clr-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: 0.02em;
+}
+
+.personName {
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+}
+
+.personRole {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--clr-muted);
+    margin-bottom: 0.75rem;
+}
+
+.personDesc {
+    font-size: 0.875rem;
+    color: var(--clr-muted);
+}
+
+/* ── Columnas ── */
+.columns {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1.3fr;
+    gap: 2.5rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--clr-border);
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: -0.03em;
+}
+
+.columnTitle {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--clr-text);
+}
+
+.spaced {
+    margin-top: 1rem;
+}
+
+.text {
+    font-size: 0.875rem;
+    color: var(--clr-muted);
+}
+
+.list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    font-size: 0.875rem;
+}
+
+.sede {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.muted {
+    color: var(--clr-muted);
+    font-size: 0.8rem;
+}
+
+.link {
+    color: var(--clr-muted);
+}
+
+.link:hover {
+    color: var(--clr-text);
+}
+
+.social {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    width: fit-content;
+}
+
+.social:hover {
+    color: var(--clr-muted);
+}
+
+/* ── Newsletter ── */
+.newsletter {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    background-color: var(--clr-bg);
+    color: var(--clr-text);
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--clr-border-hover);
+}
+
+.button {
+    padding: 0.65rem 1rem;
+    border-radius: 8px;
+    background-color: var(--clr-accent);
+    color: var(--clr-bg);
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.button:hover {
+    opacity: 0.85;
+}
+
+.success {
+    font-size: 0.8rem;
+    color: #15803d;
+}
+
+.srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+/* ── Barra inferior ── */
+.bottomBar {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--clr-border);
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--clr-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.brand {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--clr-text);
+}
+
+.legalNote {
+    font-size: 0.75rem;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+    .columns {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .columns {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .newsletter {
+        flex-direction: column;
+    }
+}

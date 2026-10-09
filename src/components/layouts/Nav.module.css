@@ -1,0 +1,63 @@
+.navContainer {
+    display: flex;
+    align-items: center;
+}
+
+.navList {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    list-style: none;
+    gap: 1.75rem;
+    margin: 0;
+    padding: 0;
+}
+
+.navLink {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--clr-muted);
+    padding: 0.4rem 0;
+    border-bottom: 2px solid transparent;
+    transition: var(--transition-smooth);
+}
+
+.navLink:hover {
+    color: var(--clr-text);
+}
+
+/* Página actual: texto oscuro y subrayado */
+.active {
+    color: var(--clr-text);
+    border-bottom-color: var(--clr-accent);
+}
+
+/* Botón del carrito en forma de pastilla */
+.cartButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding: 0 0.9rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 999px;
+    color: var(--clr-text);
+    transition: var(--transition-smooth);
+}
+
+.cartButton:hover {
+    border-color: var(--clr-border-hover);
+}
+
+.cartCount {
+    font-size: 0.875rem;
+    font-weight: 600;
+    min-width: 1ch;
+}
+
+@media (max-width: 600px) {
+    .navList {
+        gap: 1rem;
+    }
+}
