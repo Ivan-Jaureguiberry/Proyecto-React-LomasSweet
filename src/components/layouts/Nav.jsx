@@ -1,10 +1,12 @@
 import { NavLink, Link } from 'react-router-dom';
 import styles from './Nav.module.css';
 import { useCarrito } from '../../context/CarritoContext';
+import { useAuth } from '../../context/AuthContext';
 
 const Nav = () => {
     const { itemsEnCarrito } = useCarrito();
     const totalItems = itemsEnCarrito();
+    const { usuario, esAdmin } = useAuth();
 
     const claseLink = ({ isActive }) =>
         isActive ? `${styles.navLink} ${styles.active}` : styles.navLink;
@@ -40,6 +42,18 @@ const Nav = () => {
                         </svg>
                         <span className={styles.cartCount}>{totalItems}</span>
                     </Link>
+                </li>
+                {esAdmin && (
+                    <li>
+                        <NavLink to="/panel" className={claseLink}>Panel</NavLink>
+                    </li>
+                )}
+                <li>
+                    {usuario ? (
+                        <NavLink to="/perfil" className={claseLink}>Mi cuenta</NavLink>
+                    ) : (
+                        <NavLink to="/login" className={claseLink}>Ingresar</NavLink>
+                    )}
                 </li>
             </ul>
         </nav>
