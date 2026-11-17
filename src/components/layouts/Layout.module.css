@@ -19,6 +19,10 @@
     padding: 0;
 }
 
+.content:focus {
+    outline: none;
+}
+
 @media (max-width: 768px) {
     .content {
         padding: 2rem 1.25rem;

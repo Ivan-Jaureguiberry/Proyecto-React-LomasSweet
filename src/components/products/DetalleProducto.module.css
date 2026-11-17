@@ -127,10 +127,17 @@
     box-shadow: var(--shadow-sm);
 }
 
-.buyButton:hover {
+.buyButton:hover:not(:disabled) {
     opacity: 0.9;
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
+}
+
+.buyButton:disabled {
+    background-color: var(--clr-border);
+    color: var(--clr-muted);
+    box-shadow: none;
+    cursor: not-allowed;
 }
 
 /* Estados de Carga y Error */

@@ -15,6 +15,8 @@
   /* Tipografía Moderna */
   --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-body);
+  --font-mono: var(--font-body);
 
   /* Sombras UI/UX */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -58,7 +60,6 @@ h1 {
   letter-spacing: -0.03em;
 }
 
-/* Enlaces sin subrayados feos y con foco suave */
 a {
   color: inherit;
   text-decoration: none;
@@ -84,4 +85,35 @@ hr {
   border-top: 1px solid var(--clr-border);
   margin: 2.5rem 0;
   width: 100%;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* Link "Saltar al contenido": solo aparece al navegar con Tab */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 1000;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background-color: var(--clr-text);
+  color: var(--clr-bg);
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Texto solo para lectores de pantalla */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }

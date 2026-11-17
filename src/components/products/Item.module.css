@@ -25,14 +25,25 @@
     width: 100%;
     height: 100%;
     object-fit:contain ;
-    filter: grayscale(100%);
     transition: filter 0.3s ease, transform 0.3s ease;
     padding: 1rem;
 }
 
-.card:hover .image {
-    filter: grayscale(0%);
-    transform: scale(1.03);
+/* Efecto gris → color solo en dispositivos con mouse */
+@media (hover: hover) {
+    .image {
+        filter: grayscale(100%);
+    }
+
+    .card:hover .image,
+    .card:focus-within .image {
+        filter: grayscale(0%);
+        transform: scale(1.03);
+    }
+}
+
+.card:focus-within {
+    border-color: var(--clr-text);
 }
 
 .titleLink {
@@ -124,4 +135,11 @@
     background-color: var(--clr-border);
     color: var(--clr-muted);
     cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+    .counterBtn {
+        width: 38px;
+        height: 38px;
+    }
 }

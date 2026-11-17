@@ -13,30 +13,24 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1.5rem;
     padding: 1.25rem 1.5rem;
-}
-
-.brandSection {
-    display: flex;
-    align-items: center;
 }
 
 .brandLogo {
     font-family: var(--font-serif);
     font-size: 1.75rem;
     letter-spacing: -0.02em;
+    white-space: nowrap;
     color: var(--clr-text);
 }
 
-.centerSection {
-    display: flex;
-    align-items: center;
-}
-
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .headerContainer {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
+        padding: 0.75rem 1.25rem;
+    }
+
+    .brandLogo {
+        font-size: 1.4rem;
     }
 }

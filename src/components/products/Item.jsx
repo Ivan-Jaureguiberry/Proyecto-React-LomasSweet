@@ -26,7 +26,7 @@ const Item = ({ id, title, price, image }) => {
         <article className={styles.card}>
             {/*click en la imagen te lleva al detalle*/}
             <Link to={`/producto/${id}`} className={styles.imageLink}>
-                <img src={image} alt={title} className={styles.image} />
+                <img src={image} alt={title} className={styles.image} loading="lazy" />
             </Link>
 
             {/*click en el título / price te lleva al detalle */}

@@ -1,24 +1,23 @@
 .navContainer {
     display: flex;
     align-items: center;
+    gap: 1.75rem;
 }
 
 .navList {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    list-style: none;
     gap: 1.75rem;
-    margin: 0;
-    padding: 0;
+    list-style: none;
 }
 
 .navLink {
+    display: inline-block;
+    padding: 0.4rem 0;
     font-family: var(--font-body);
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--clr-muted);
-    padding: 0.4rem 0;
     border-bottom: 2px solid transparent;
     transition: var(--transition-smooth);
 }
@@ -27,13 +26,13 @@
     color: var(--clr-text);
 }
 
-/* Página actual: texto oscuro y subrayado */
+/* Página actual */
 .active {
     color: var(--clr-text);
     border-bottom-color: var(--clr-accent);
 }
 
-/* Botón del carrito en forma de pastilla */
+/* Carrito en forma de pastilla */
 .cartButton {
     display: inline-flex;
     align-items: center;
@@ -56,8 +55,65 @@
     min-width: 1ch;
 }
 
-@media (max-width: 600px) {
+/* Botón hamburguesa: oculto en escritorio */
+.menuButton {
+    display: none;
+}
+
+/* ---------- Tablet y celular ---------- */
+@media (max-width: 768px) {
+    .navContainer {
+        gap: 0.5rem;
+    }
+
+    .menuButton {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border: 1px solid var(--clr-border);
+        border-radius: 999px;
+        color: var(--clr-text);
+    }
+
+    .menuButton:hover {
+        border-color: var(--clr-border-hover);
+    }
+
+    /* El menú se despliega debajo del header, a todo el ancho */
     .navList {
-        gap: 1rem;
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 0.5rem 1.25rem 1rem;
+        background-color: var(--clr-bg);
+        border-bottom: 1px solid var(--clr-border);
+        box-shadow: var(--shadow-md);
+    }
+
+    .navList.abierto {
+        display: flex;
+    }
+
+    .navLink {
+        display: block;
+        padding: 0.9rem 0;
+        font-size: 1rem;
+        border-bottom: 1px solid var(--clr-border);
+    }
+
+    .navList li:last-child .navLink {
+        border-bottom: none;
+    }
+
+    .active {
+        font-weight: 600;
+        border-bottom-color: var(--clr-border);
     }
 }
