@@ -56,4 +56,23 @@ export const cargarProductosIniciales = async () => {
 };
 
 // Subir imagenes a IMGBB
-const IMGBB_KEY = "4bc89d90e5ba2ca799b0f1339650ce18";
+const IMGBB_KEY = "fbbfe0f9b75c1002bbaa61ec393a2dad";
+
+export const subirImagen = async (archivo) => {
+    const formData = new FormData();
+    formData.append("image", archivo);
+
+    const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_KEY}`, {
+        method: "POST",
+        body: formData
+    });
+    const datos = await res.json().catch(() => null);
+
+    if (!res.ok || !datos?.success) {
+        const error = new Error("Falló la subida a IMGBB");
+        error.code = "imagen/subida";
+        throw error;
+    }
+
+    return datos.data.url;
+};
