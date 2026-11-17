@@ -1,6 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams, Link } from 'react-router-dom';
 import { useCarrito } from '../../context/CarritoContext';
+import { obtenerProducto } from '../../firebase/productos';
+import { traducirError } from '../../firebase/errores';
+import Cargando from '../Cargando';
+import MensajeError from '../MensajeError';
 import styles from './DetalleProducto.module.css';
 
 const DetalleProducto = () => {
@@ -11,39 +15,39 @@ const DetalleProducto = () => {
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState(null);
 
-    const manejarAgregarACarrito = () => {
-        const productoFormateado = {
-            id: producto.id,
-            nombre: producto.title,
-            precio: producto.price,
-            image: producto.image
-        };
-
-        agregarACarrito({ producto: productoFormateado, cantidad: 1 });
-    };
-
-    useEffect(() => {
+    const cargar = useCallback(async () => {
         setCargando(true);
-        fetch(`${import.meta.env.BASE_URL}data/productos.json`)
-            .then((res) => {
-                if(!res.ok) throw new Error('No se encontró el producto');
-                return res.json();
-            })
-            .then((datos) => {
-                const encontrado = datos.find((p) => p.id === Number(id));
-                if (!encontrado) throw new Error('No se encontró el producto');
-                setProducto({
-                    ...encontrado,
-                    image: `${import.meta.env.BASE_URL}${encontrado.image}`,
-                });
-            })
-            .catch((err) => setError(err.message))
-            .finally(() => setCargando(false));
+        setError(null);
+        try {
+            setProducto(await obtenerProducto(id));
+        } catch (err) {
+            console.error("Error al obtener el producto:", err);
+            setError(traducirError(err.code));
+        } finally {
+            setCargando(false);
+        }
     }, [id]);
 
-    if (cargando) return <div className={styles.statusContainer}>Cargando detalle del producto...</div>;
-    if (error) return <div className={styles.statusContainer}>Error: {error}</div>;
-    if (!producto) return <div className={styles.statusContainer}>Producto no encontrado</div>;
+    useEffect(() => {
+        cargar();
+    }, [cargar]);
+
+    const manejarAgregarACarrito = () => {
+        agregarACarrito({
+            producto: {
+                id: producto.id,
+                nombre: producto.title,
+                precio: producto.price,
+                image: producto.image
+            },
+            cantidad: 1
+        });
+    };
+
+    if (cargando) return <Cargando texto="Cargando detalle del producto..." />;
+    if (error) return <MensajeError mensaje={error} onReintentar={cargar} />;
+
+    const sinStock = producto.stock === 0;
 
     return (
         <div className={styles.container}>
@@ -58,13 +62,13 @@ const DetalleProducto = () => {
 
                 <div className={styles.infoSection}>
                     <h1 className={styles.title}>{producto.title}</h1>
-                    <p className={styles.price}>AR${producto.price}</p>
+                    <p className={styles.price}>AR${Number(producto.price).toLocaleString("es-AR")}</p>
 
                     <h3 className={styles.descriptionTitle}>Descripción</h3>
                     <p className={styles.description}>{producto.description}</p>
 
-                    <button className={styles.buyButton} onClick={manejarAgregarACarrito}>
-                        Agregar al carrito
+                    <button className={styles.buyButton} onClick={manejarAgregarACarrito} disabled={sinStock}>
+                        {sinStock ? "Sin stock" : "Agregar al carrito"}
                     </button>
                 </div>
             </div>
