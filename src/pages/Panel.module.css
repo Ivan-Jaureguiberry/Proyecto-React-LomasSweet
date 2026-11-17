@@ -1,0 +1,245 @@
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+}
+
+.encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.titulo {
+    text-align: left;
+    margin: 0;
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+}
+
+.subtitulo {
+    margin-top: 0.25rem;
+    font-size: 0.9rem;
+    color: var(--clr-muted);
+}
+
+/* ---------- Botones ---------- */
+.btnPrimario {
+    padding: 0.7rem 1.3rem;
+    border-radius: 8px;
+    background-color: var(--clr-accent);
+    color: var(--clr-bg);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.btnPrimario:hover {
+    opacity: 0.85;
+}
+
+.btnSecundario {
+    padding: 0.65rem 1.2rem;
+    border: 1px solid var(--clr-text);
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--clr-text);
+}
+
+.btnSecundario:hover:not(:disabled) {
+    background-color: var(--clr-accent);
+    color: var(--clr-bg);
+}
+
+.btnPeligro {
+    padding: 0.65rem 1.2rem;
+    border-radius: 8px;
+    background-color: #dc2626;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.btnPeligro:hover:not(:disabled) {
+    background-color: #b91c1c;
+}
+
+.btnSecundario:disabled,
+.btnPeligro:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ---------- Tabla ---------- */
+.tablaContenedor {
+    overflow-x: auto;
+    border: 1px solid var(--clr-border);
+    border-radius: 12px;
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.tabla th {
+    padding: 0.9rem 1rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    color: var(--clr-muted);
+    background-color: var(--clr-card-bg);
+    border-bottom: 1px solid var(--clr-border);
+}
+
+.tabla td {
+    padding: 0.8rem 1rem;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--clr-border);
+}
+
+.tabla tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla tbody tr:hover {
+    background-color: var(--clr-surface);
+}
+
+.producto {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    min-width: 220px;
+    font-weight: 600;
+}
+
+.miniatura {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    padding: 4px;
+    object-fit: contain;
+    background-color: var(--clr-card-bg);
+    border-radius: 8px;
+}
+
+.sinStock {
+    color: #dc2626;
+    font-weight: 600;
+}
+
+.derecha {
+    text-align: right;
+}
+
+.tabla th.derecha {
+    text-align: right;
+}
+
+.acciones {
+    display: inline-flex;
+    gap: 0.5rem;
+}
+
+.btnEditar,
+.btnEliminar {
+    padding: 0.4rem 0.85rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--clr-text);
+}
+
+.btnEditar:hover {
+    border-color: var(--clr-text);
+}
+
+.btnEliminar {
+    color: #dc2626;
+    border-color: #fecaca;
+}
+
+.btnEliminar:hover {
+    background-color: #dc2626;
+    border-color: #dc2626;
+    color: #fff;
+}
+
+/* ---------- Estado vacío ---------- */
+.vacio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 4rem 1.5rem;
+    text-align: center;
+    color: var(--clr-muted);
+    border: 1px dashed var(--clr-border);
+    border-radius: 12px;
+}
+
+/* ---------- Confirmación ---------- */
+.textoConfirmar {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    color: var(--clr-muted);
+}
+
+.textoConfirmar strong {
+    color: var(--clr-text);
+}
+
+.error {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    background-color: #fee2e2;
+    color: #b91c1c;
+    font-size: 0.85rem;
+}
+
+.botonesConfirmar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+/* ---------- Aviso flotante ---------- */
+.aviso {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 2000;
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    background-color: var(--clr-text);
+    color: var(--clr-bg);
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: var(--shadow-hover);
+    animation: entrar 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes entrar {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: none; opacity: 1; }
+}
+
+@media (max-width: 600px) {
+    .encabezado {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btnPrimario {
+        width: 100%;
+    }
+}
