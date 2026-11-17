@@ -24,14 +24,14 @@ const Login = () => {
             return;
         }
 
-        setEnviado(true);
+        setEnviando(true);
         try {
             await login(email, password);
             navigate(destino, { replace: true });
         } catch(err) {
             setError(traducirError(err.code));
         } finally {
-            setEnviado(false);
+            setEnviando(false);
         }
     };
 
@@ -41,7 +41,7 @@ const Login = () => {
                 <h1 className = {styles.titulo}>Iniciar Sesión</h1>
                 <p className= {styles.subtitulo}>Ingresá con tu cuenta</p>
 
-                <form onSubmir = {manejarSubmit} className = {styles.formulario} noValidate>
+                <form onSubmit = {manejarSubmit} className = {styles.formulario} noValidate>
                     <div className = {styles.campo}>
                         <label htmlFor="email" className = {styles.label}>Email</label>
                         <input

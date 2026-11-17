@@ -34,7 +34,7 @@
 
 .fila {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 1rem;
 }
 
@@ -51,6 +51,8 @@
 }
 
 .input {
+    width: 100%;
+    min-width: 0;
     padding: 0.75rem 0.9rem;
     font: inherit;
     color: var(--clr-text);

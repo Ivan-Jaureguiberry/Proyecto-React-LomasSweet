@@ -27,7 +27,7 @@ const App = () => {
               <RutaProtegida><Perfil /></RutaProtegida>
             }/>
             <Route path="/panel" element={
-              <RutaProtegida><Panel /></RutaProtegida>
+              <RutaProtegida soloAdmin><Panel /></RutaProtegida>
             }/>
           </Route>
       </Routes>
