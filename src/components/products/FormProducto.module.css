@@ -1,0 +1,150 @@
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.fila {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1rem;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.label {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.input,
+.textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 0.7rem 0.85rem;
+    font: inherit;
+    color: var(--clr-text);
+    background-color: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: 8px;
+    transition: var(--transition-smooth);
+}
+
+.textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.input:focus,
+.textarea:focus {
+    outline: none;
+    border-color: var(--clr-text);
+    background-color: var(--clr-bg);
+    box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.08);
+}
+
+.inputError,
+.inputError:focus {
+    border-color: #dc2626;
+}
+
+.inputError:focus {
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+.mensajeError {
+    font-size: 0.78rem;
+    color: #dc2626;
+}
+
+.archivo {
+    font-size: 0.85rem;
+    color: var(--clr-muted);
+}
+
+.archivo::file-selector-button {
+    margin-right: 0.75rem;
+    padding: 0.5rem 0.9rem;
+    font: inherit;
+    font-weight: 600;
+    color: var(--clr-text);
+    background-color: var(--clr-card-bg);
+    border: 1px solid var(--clr-border);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.vistaPrevia {
+    width: 96px;
+    height: 96px;
+    margin-top: 0.5rem;
+    padding: 6px;
+    object-fit: contain;
+    background-color: var(--clr-card-bg);
+    border: 1px solid var(--clr-border);
+    border-radius: 8px;
+}
+
+.errorGeneral {
+    padding: 0.75rem;
+    border-radius: 8px;
+    background-color: #fee2e2;
+    color: #b91c1c;
+    font-size: 0.85rem;
+}
+
+.acciones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.boton {
+    padding: 0.75rem 1.4rem;
+    border-radius: 8px;
+    background-color: var(--clr-accent);
+    color: var(--clr-bg);
+    font-weight: 600;
+}
+
+.boton:hover:not(:disabled) {
+    opacity: 0.85;
+}
+
+.botonSecundario {
+    padding: 0.75rem 1.4rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 8px;
+    font-weight: 600;
+    color: var(--clr-text);
+}
+
+.botonSecundario:hover:not(:disabled) {
+    border-color: var(--clr-text);
+}
+
+.boton:disabled,
+.botonSecundario:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+    .fila {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .acciones {
+        flex-direction: column-reverse;
+    }
+
+    .boton,
+    .botonSecundario {
+        width: 100%;
+    }
+}
