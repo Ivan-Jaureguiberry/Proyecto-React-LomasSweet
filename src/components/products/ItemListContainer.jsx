@@ -1,5 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { obtenerProductos } from "../../firebase/productos";
+import { traducirError } from "../../firebase/errores";
 import ItemList from "./ItemList";
+import Cargando from "../Cargando";
+import MensajeError from "../MensajeError"
 import styles from "./ItemListContainer.module.css";
 
 const ItemListContainer = () => {
@@ -7,33 +11,33 @@ const ItemListContainer = () => {
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        fetch(`${import.meta.env.BASE_URL}data/productos.json`)
-            .then(res => {
-                if (!res.ok) throw new Error("No se pudo cargar productos");
-                return res.json();
-            })
-            .then((datos) => {
-                const conRuta = datos.map((p) => ({
-                    ...p,
-                    image: `${import.meta.env.BASE_URL}${p.image}`,
-                }));
-                setProductos(conRuta);
-            })
-            .catch(err => setError(err.message))
-            .finally(() => setCargando(false));
+    const cargar = useCallback(async () => {
+        setCargando(true);
+        setError(null);
+        try {
+            setProductos(await obtenerProductos());
+        } catch (err) {
+            console.error("Error al obtener productos:", err);
+            setError(traducirError(err.code));
+        } finally {
+            setCargando(false);
+        }
     }, []);
 
-    if (cargando)
-        return <div className={styles.statusMessage}>Cargando productos...</div>;
+    useEffect(() => {
+        cargar();
+    }, [cargar]);
 
-    if (error)
-        return <div className={styles.statusMessage}>Error: {error}</div>;
+    if (cargando) return <Cargando texto="Cargando productos..." />;
+    if (error) return <MensajeError mensaje={error} onReintentar={cargar} />;
 
     return (
         <section className={styles.container}>
             <h1>Productos</h1>
-            <ItemList productos={productos} />
+            {productos.length === 0
+                ? <p className={styles.statusMessage}>Todavía no hay productos disponibles.</p>
+                : <ItemList productos={productos} />
+            }
         </section>
     );
 };
