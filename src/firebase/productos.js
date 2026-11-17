@@ -17,6 +17,11 @@ const formatear = (snap) => {
     return { ...datos, id: snap.id, image: resolverImagen(datos.image) };
 };
 
+export const obtenerProductos = async () => {
+    const resp = await getDocs(coleccion);
+    return resp.docs.map(formatear);
+};
+
 export const obtenerProducto = async (id) => {
     const snap = await getDoc(doc(db, "productos", id));
     if (!snap.exists()) {

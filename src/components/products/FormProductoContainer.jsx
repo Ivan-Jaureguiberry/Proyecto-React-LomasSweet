@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import FormProducto from "./FormProducto";
 import { crearProducto, actualizarProducto, subirImagen } from "../../firebase/productos";
 import { traducirError } from "../../firebase/errores";
-import { descending } from "firebase/firestore/pipelines";
 
 const estadoInicial = { title: "", price: "", stock: "", description: "" };
 
@@ -19,7 +18,7 @@ const FormProductoContainer = ({ productoAEditar, onGuardado, onCancelar }) => {
     );
 
     const [imagen, setImagen] = useState(null);
-    const [vistaPrevia, setVistaPrevia] = useState(productoAEditar?.imagen || "");
+    const [vistaPrevia, setVistaPrevia] = useState(productoAEditar?.image || "");
     const [errores, setErrores] = useState({});
     const [errorGeneral, setErrorGeneral] = useState(null);
     const [cargando, setCargando] = useState(false);
@@ -51,19 +50,19 @@ const FormProductoContainer = ({ productoAEditar, onGuardado, onCancelar }) => {
         const stock = Number(datosForm.stock);
 
         if(!datosForm.title.trim())
-            nuevos.title = "El nombre es obligario.";
+            nuevos.title = "El nombre es obligatorio.";
 
-        if(!datosForm.price === "")
+        if(datosForm.price === "")
             nuevos.price = "El precio es obligatorio.";
         else if(precio <= 0)
             nuevos.price = "El precio debe ser mayor que cero.";
 
-        if(!datosForm.stock === "")
+        if(datosForm.stock === "")
             nuevos.stock = "El stock es obligatorio.";
         else if(!Number.isInteger(stock) || stock < 0)
             nuevos.stock = "El stock debe ser un número entero mayor o igual que cero.";
 
-        if(!datosForm.description.trim().length < 10)
+        if(datosForm.description.trim().length < 10)
             nuevos.description = "La descripción debe tener al menos 10 caracteres.";
 
         if(!productoAEditar && !imagen)
@@ -90,7 +89,7 @@ const FormProductoContainer = ({ productoAEditar, onGuardado, onCancelar }) => {
             };
 
             // Solo subo la imagen en caso de si eligieron una nueva
-            if (imagen) datos.imagen = await subirImagen(imagen);
+            if (imagen) datos.image = await subirImagen(imagen);
 
             if (productoAEditar) {
                 await actualizarProducto(productoAEditar.id, datos);

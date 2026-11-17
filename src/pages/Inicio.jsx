@@ -1,32 +1,31 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useCarrito } from '../context/CarritoContext';
+import { obtenerProductos } from "../firebase/productos";
+import Cargando from "../components/Cargando";
+import MensajeError from "../components/MensajeError";
 import styles from './Inicio.module.css';
 
 const INSTAGRAM_URL = 'https://www.instagram.com/lomas.sweet.alfajores/';
 const WHATSAPP_URL = 'https://wa.me/5491100000000';
 
-const ID_HERO = 3;
-const ID_DESTACADO = 6;
+const ID_HERO = "3";
+const ID_DESTACADO = "6";
 const CANTIDAD_DESTACADOS = 4;
 
 const Inicio = () => {
     const [productos, setProductos] = useState([]);
+    const [cargando, setCargando] = useState(true);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
-        fetch(`${import.meta.env.BASE_URL}data/productos.json`)
-            .then((res) => {
-                if(!res.ok) throw new Error('No se pudieron cargar los productos');
-                return res.json();
+        obtenerProductos()
+            .then(setProductos)
+            .catch((err) => {
+                console.error(err);
+                setError(true);
             })
-            .then((datos) => {
-                const conRuta = datos.map((p) => ({
-                    ...p,
-                    image: `${import.meta.env.BASE_URL}${p.image}`,
-                }));
-            setProductos(conRuta);
-            })
-            .catch((err) => console.error(err));
+            .finally(() => setCargando(false));
     }, []);
 
     const hero = productos.find((p) => p.id === ID_HERO);
@@ -121,27 +120,33 @@ const Inicio = () => {
                     </Link>
                 </div>
 
-                <div className={styles.productGrid}>
-                    {masPedidos.map((producto) => (
-                        <article key={producto.id} className={styles.productCard}>
-                            <Link to={`/producto/${producto.id}`} className={styles.productImageBox}>
-                                <img src={producto.image} alt={producto.title} className={styles.cover} />
-                            </Link>
-                            <div className={styles.productBody}>
-                                <h3 className={styles.productTitle}>{producto.title}</h3>
-                                <p className={styles.productDesc}>{producto.description}</p>
-                                <div className={styles.productFooter}>
-                                    <span className={styles.productPrice}>
-                                        AR${producto.price.toLocaleString('es-AR')}
-                                    </span>
-                                    <Link to={`/producto/${producto.id}`} className={styles.productLink}>
-                                        Ver más
-                                    </Link>
+                {cargando ? (
+                    <Cargando texto="Cargando sabores..." />
+                ) : error ? (
+                    <MensajeError mensaje="No pudimos cargar los productos. Probá recargar la página." />
+                ) : (
+                    <div className={styles.productGrid}>
+                        {masPedidos.map((producto) => (
+                            <article key={producto.id} className={styles.productCard}>
+                                <Link to={`/producto/${producto.id}`} className={styles.productImageBox}>
+                                    <img src={producto.image} alt={producto.title} className={styles.cover} />
+                                </Link>
+                                <div className={styles.productBody}>
+                                    <h3 className={styles.productTitle}>{producto.title}</h3>
+                                    <p className={styles.productDesc}>{producto.description}</p>
+                                    <div className={styles.productFooter}>
+                                        <span className={styles.productPrice}>
+                                            AR${producto.price.toLocaleString('es-AR')}
+                                        </span>
+                                        <Link to={`/producto/${producto.id}`} className={styles.productLink}>
+                                            Ver más
+                                        </Link>
+                                    </div>
                                 </div>
-                            </div>
-                        </article>
-                    ))}
-                </div>
+                            </article>
+                        ))}
+                    </div>
+                )} 
             </section>
 
             {destacado && (
