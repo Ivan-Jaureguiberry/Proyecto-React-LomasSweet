@@ -1,0 +1,53 @@
+.paginador {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 3rem;
+}
+
+.boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--clr-text);
+    background-color: var(--clr-bg);
+    border: 1px solid var(--clr-border);
+    border-radius: 8px;
+}
+
+.boton:hover:not(:disabled) {
+    border-color: var(--clr-border-hover);
+}
+
+.boton:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.activa,
+.activa:hover:not(:disabled) {
+    background-color: var(--clr-accent);
+    border-color: var(--clr-accent);
+    color: var(--clr-bg);
+}
+
+.puntos {
+    min-width: 24px;
+    text-align: center;
+    color: var(--clr-muted);
+}
+
+/* En celular, solo flechas */
+@media (max-width: 480px) {
+    .texto {
+        display: none;
+    }
+}

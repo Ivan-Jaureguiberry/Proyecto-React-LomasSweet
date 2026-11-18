@@ -1,0 +1,57 @@
+.contenedor {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.icono {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    color: var(--clr-muted);
+    pointer-events: none;
+}
+
+.input {
+    width: 100%;
+    padding: 0.85rem 2.75rem;
+    font: inherit;
+    color: var(--clr-text);
+    background-color: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: 999px;
+    transition: var(--transition-smooth);
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--clr-text);
+    background-color: var(--clr-bg);
+    box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.08);
+}
+
+/* Ocultamos la "x" nativa de Chrome para usar la nuestra */
+.input::-webkit-search-cancel-button {
+    display: none;
+}
+
+.limpiar {
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    color: var(--clr-muted);
+}
+
+.limpiar:hover {
+    background-color: var(--clr-card-bg);
+    color: var(--clr-text);
+}

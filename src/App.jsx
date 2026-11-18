@@ -18,7 +18,7 @@ const App = () => {
       <Routes>
           <Route element={<Layout />}>
             <Route path='/' element={<Inicio />}/>
-            <Route path='/contacto' element={<h1>Contacto</h1>}/>
+            <Route path="/contacto" element={<Contacto />}/>
             <Route path='/productos' element={<ItemListContainer />}/>
             <Route path='/producto/:id' element={<DetalleProducto />}/>
             <Route path='/carrito' element={<Carrito />}/>
@@ -31,7 +31,6 @@ const App = () => {
               <RutaProtegida soloAdmin><Panel /></RutaProtegida>
             }/>
           </Route>
-          <Route path="/contacto" element={<Contacto />}/>
       </Routes>
     </>
   );
