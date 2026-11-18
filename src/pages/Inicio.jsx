@@ -9,7 +9,7 @@ import styles from './Inicio.module.css';
 const INSTAGRAM_URL = 'https://www.instagram.com/lomas.sweet.alfajores/';
 const WHATSAPP_URL = 'https://wa.me/5491100000000';
 
-const ID_HERO = "3";
+const IMAGEN_HERO = `${import.meta.env.BASE_URL}images/volcanDeChocolate.webp`;
 const ID_DESTACADO = "6";
 const CANTIDAD_DESTACADOS = 4;
 
@@ -28,7 +28,6 @@ const Inicio = () => {
             .finally(() => setCargando(false));
     }, []);
 
-    const hero = productos.find((p) => p.id === ID_HERO);
     const destacado = productos.find((p) => p.id === ID_DESTACADO);
     const masPedidos = productos.slice(0, CANTIDAD_DESTACADOS);
 
@@ -59,7 +58,14 @@ const Inicio = () => {
                     </div>
 
                     <div className={styles.heroImageBox}>
-                        {hero && <img src={hero.image} alt={hero.title} className={styles.cover} />}
+                        <img
+                            src={IMAGEN_HERO}
+                            alt="Alfajor Volcán de Chocolate cortado al medio"
+                            className={styles.cover}
+                            width="500"
+                            height="500"
+                            fetchPriority="high"
+                        />
                     </div>
                 </div>
             </section>
