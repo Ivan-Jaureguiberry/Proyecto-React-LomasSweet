@@ -2,6 +2,7 @@ import styles from "./Layout.module.css"
 import Header from "./Header"
 import Footer from "./Footer"
 import { Outlet, useLocation } from "react-router-dom"
+import ScrollAlInicio from "../ScrollAlInicio"
 
 const Layout = () => {
     const { pathname } = useLocation();
@@ -9,6 +10,7 @@ const Layout = () => {
 
     return (
     <div className={styles.mainWrapper}>
+        <ScrollAlInicio />
         <a href="#contenido" className="skip-link">Saltar al contenido</a>
         <Header />
         <main
