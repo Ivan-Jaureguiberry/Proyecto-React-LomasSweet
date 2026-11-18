@@ -9,6 +9,7 @@ import Inicio from "./pages/Inicio";
 import ItemListContainer from "./components/products/ItemListContainer";
 import DetalleProducto from "./components/products/DetalleProducto";
 import Carrito from "./pages/Carrito";
+import Contacto from "./pages/Contacto";
 import './App.css';
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
               <RutaProtegida soloAdmin><Panel /></RutaProtegida>
             }/>
           </Route>
+          <Route path="/contacto" element={<Contacto />}/>
       </Routes>
     </>
   );

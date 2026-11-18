@@ -1,25 +1,6 @@
 import { useState } from 'react';
 import styles from './Footer.module.css';
-
-const INSTAGRAM_URL = 'https://www.instagram.com/lomas.sweet.alfajores/';
-
-const sedes = [
-    {
-        nombre: 'Casa Central',
-        direccion: 'Av. Hipólito Yrigoyen 8950, Lomas de Zamora',
-        horario: 'Lun a Sáb · 9 a 20 h',
-    },
-    {
-        nombre: 'Sucursal Banfield',
-        direccion: 'Maipú 320, Banfield',
-        horario: 'Lun a Sáb · 10 a 19 h',
-    },
-    {
-        nombre: 'Sucursal Temperley',
-        direccion: 'Av. Meeks 150, Temperley',
-        horario: 'Mar a Dom · 10 a 20 h',
-    },
-];
+import { INSTAGRAM_URL, SUCURSALES as sedes } from '../../data/contacto';
 
 const equipo = [
     {
