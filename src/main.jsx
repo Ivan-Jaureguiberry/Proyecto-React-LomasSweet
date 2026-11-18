@@ -6,6 +6,11 @@ import { AuthProvider } from './context/AuthContext.jsx';
 import App from './App.jsx'
 import './index.css'
 
+// Cuando se recarga, el navegador no se acuerda del scroll, la página arranca arriba de todo
+if ('scrollRestoration' in window.history) {
+  window.history.scrollRestoration = 'manual';
+}
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter basename={import.meta.env.BASE_URL}>
